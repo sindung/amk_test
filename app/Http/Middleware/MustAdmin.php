@@ -19,7 +19,7 @@ class MustAdmin
     public function handle(Request $request, Closure $next)
     {
         // bisa melewati middleware jika role = admin
-        if (Auth::user()->role_id != 1) {
+        if (Auth::user()->role_id != '690176ab-ae8f-4813-bc92-4b0a92a5d5d9') {
             // abort(404);
             Session::flash('status', 'warning');
             Session::flash('alert', 'warning');

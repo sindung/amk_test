@@ -10,7 +10,7 @@
 @section('content')
     <div class="mb-4">
         <a href="/orders-add" class="btn btn-primary">Add data</a>
-        @if (Auth::user()->role_id == 1)
+        @if (Auth::user()->role_id == '690176ab-ae8f-4813-bc92-4b0a92a5d5d9')
             <a href="/orders-deleted" class="btn btn-outline-secondary">Show deleted data</a>
         @endif
     </div>
@@ -46,7 +46,7 @@
                     <th>Subtotal</th>
                     <th>Discount</th>
                     <th>Total</th>
-                    @if (Auth::user()->role_id == 1)
+                    @if (Auth::user()->role_id == '690176ab-ae8f-4813-bc92-4b0a92a5d5d9')
                         <th>Action</th>
                     @endif
                 </tr>
@@ -62,7 +62,7 @@
                         <td>{{ $item->subtotal }}</td>
                         <td>{{ $item->discount }}</td>
                         <td>{{ $item->total }}</td>
-                        @if (Auth::user()->role_id == 1)
+                        @if (Auth::user()->role_id == '690176ab-ae8f-4813-bc92-4b0a92a5d5d9')
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Action href">
                                     <a href="orders-edit/{{ $item->id }}" class="btn btn-outline-info">Edit</a>

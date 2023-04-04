@@ -43,7 +43,7 @@
                     <th>Discount</th>
                     <th>Total</th>
                     <th>Note</th>
-                    @if (Auth::user()->role_id == 1)
+                    @if (Auth::user()->role_id == '690176ab-ae8f-4813-bc92-4b0a92a5d5d9')
                         <th>Action</th>
                     @endif
                 </tr>
@@ -59,7 +59,7 @@
                         <td>{{ $item->discount }}</td>
                         <td>{{ $item->total }}</td>
                         <td>{{ $item->note }}</td>
-                        @if (Auth::user()->role_id == 1)
+                        @if (Auth::user()->role_id == '690176ab-ae8f-4813-bc92-4b0a92a5d5d9')
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Action href">
                                     <a href="/order-item-restore/{{ $item->id }}"

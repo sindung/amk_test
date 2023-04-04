@@ -39,7 +39,7 @@
                     <th>Name</th>
                     <th>Address</th>
                     <th>Phone</th>
-                    @if (Auth::user()->role_id == 1)
+                    @if (Auth::user()->role_id == '690176ab-ae8f-4813-bc92-4b0a92a5d5d9')
                         <th>Action</th>
                     @endif
                 </tr>
@@ -51,7 +51,7 @@
                         <td>{{ $item->name }}</td>
                         <td>{{ $item->address }}</td>
                         <td>{{ $item->phone }}</td>
-                        @if (Auth::user()->role_id == 1)
+                        @if (Auth::user()->role_id == '690176ab-ae8f-4813-bc92-4b0a92a5d5d9')
                             <td>
                                 <div class="btn-group btn-group-sm" role="group" aria-label="Action href">
                                     <a href="/customers-restore/{{ $item->id }}"

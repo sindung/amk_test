@@ -35,7 +35,7 @@
                             href="/"><i class="bi bi-house"></i>
                             Home</a>
                     </li>
-                    @if (Auth::user()->role_id == 1)
+                    @if (Auth::user()->role_id == '690176ab-ae8f-4813-bc92-4b0a92a5d5d9')
                         <li class="nav-item">
                             <a class="nav-link {{ in_array(Request::segment(1), ['customers', 'customers-add', 'customers-edit', 'customers-delete', 'customers-deleted']) ? 'active' : null }}"
                                 href="/customers"><i class="bi bi-people"></i> Customers</a>
