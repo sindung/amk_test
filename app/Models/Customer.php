@@ -11,4 +11,5 @@ class Customer extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = ['name', 'phone', 'address'];
+    public $incrementing = false;
 }

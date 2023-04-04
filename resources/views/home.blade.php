@@ -4,8 +4,8 @@
 
 @section('header', 'Home')
 @section('content')
+    {{ Auth::user() }}
     <div class="bd-callout bd-callout-info">
-        Selamat datang, {{ Auth::user()->name }}. Role anda adalah
-        {{ Auth::user()->role->id . ' - ' . Auth::user()->role->name }}.
+        Selamat datang, {{ Auth::user()->name }}. Role anda adalah {{ Auth::user()->role->name }}.
     </div>
 @endsection

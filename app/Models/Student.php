@@ -11,10 +11,11 @@ class Student extends Model
 
     // protected $table = 'students';
     // protected $primaryKey = 'id';
-    // protected $incrementing = true;
+    // public $incrementing = true;
     // protected $keyType = 'integer';
     // public $timestamps = true;
     protected $fillable = ['name', 'gender', 'nis', 'class_id'];
+    public $incrementing = false;
 
     // relation many to one
     public function class()

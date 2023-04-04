@@ -10,6 +10,7 @@ class Teacher extends Model
     use HasFactory;
 
     protected $fillable = ['name'];
+    public $incrementing = false;
 
     public function class()
     {

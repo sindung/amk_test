@@ -19,6 +19,7 @@ class Order extends Model
         'total',
         'address'
     ];
+    public $incrementing = false;
 
     public function customer()
     {

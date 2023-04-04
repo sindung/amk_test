@@ -19,6 +19,7 @@ class OrderItem extends Model
         'total',
         'note',
     ];
+    public $incrementing = false;
 
     // relation
     public function orders()

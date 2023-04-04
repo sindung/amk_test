@@ -10,6 +10,7 @@ class Extracurricular extends Model
     use HasFactory;
 
     protected $fillable = ['name'];
+    public $incrementing = false;
 
     public function students()
     {
