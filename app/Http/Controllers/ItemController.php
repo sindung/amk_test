@@ -6,6 +6,7 @@ use App\Models\ClassRoom;
 use App\Models\Item;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class ItemController extends Controller
 {
@@ -15,7 +16,7 @@ class ItemController extends Controller
         $items = Item::where('name', 'LIKE', '%' . $keyword . '%')
             ->orWhere('price', 'LIKE', '%' . $keyword . '%')
             ->orWhere('description', 'LIKE', '%' . $keyword . '%')
-            ->orderBy('id', 'desc')
+            ->latest()
             ->paginate(3);
         return view('item', ['itemList' => $items]);
     }
@@ -41,6 +42,9 @@ class ItemController extends Controller
         ]);
 
         // mass store
+        $request->merge([
+            'id' => Str::uuid()->toString(),
+        ]);
         $items = Item::create($request->all());
 
         if ($items) {

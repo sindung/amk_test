@@ -34,9 +34,9 @@ class UserSeeder extends Seeder
             $role = Role::select('id')->where('name', $value['role_name'])->first();
 
             User::insert([
-                'id' => Str::uuid()->toString(),
                 // 'id' => $value['id'],
                 // 'role_id' => $value['role_id'],
+                'id' => Str::uuid()->toString(),
                 'name' => $value['name'],
                 'email' => $value['email'],
                 'role_id' => $role->id,

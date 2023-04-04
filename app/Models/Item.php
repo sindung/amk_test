@@ -10,6 +10,6 @@ class Item extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['name', 'price', 'description'];
+    protected $fillable = ['id', 'name', 'price', 'description'];
     public $incrementing = false;
 }

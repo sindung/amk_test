@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ClassRoom;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class CustomerController extends Controller
 {
@@ -16,7 +16,8 @@ class CustomerController extends Controller
         $customer = Customer::where('name', 'LIKE', '%' . $keyword . '%')
             ->orWhere('address', 'LIKE', '%' . $keyword . '%')
             ->orWhere('phone', 'LIKE', '%' . $keyword . '%')
-            // ->orderBy('id', 'desc')
+            // ->orderBy('created_at', 'desc')
+            ->latest()
             ->paginate(3);
         return view('customer', ['customerList' => $customer]);
     }
@@ -41,6 +42,9 @@ class CustomerController extends Controller
         ]);
 
         // mass store
+        $request->merge([
+            'id' => Str::uuid()->toString(),
+        ]);
         $customer = Customer::create($request->all());
 
         if ($customer) {
@@ -103,7 +107,7 @@ class CustomerController extends Controller
     public function restore($id)
     {
         $restore = Customer::withTrashed()
-            ->where('uuid', $id)
+            ->where('id', $id)
             ->restore();
 
         if ($restore) {

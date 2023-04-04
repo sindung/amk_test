@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class OrderItemController extends Controller
 {
@@ -22,7 +23,7 @@ class OrderItemController extends Controller
             })
             ->orWhere('qty', 'LIKE', '%' . $keyword . '%')
             ->orWhere('price', 'LIKE', '%' . $keyword . '%')
-            ->orderBy('id', 'desc')
+            ->latest()
             ->paginate(3);
         return view('order-item', ['orderItemList' => $orderItem]);
     }
@@ -53,6 +54,9 @@ class OrderItemController extends Controller
         ]);
 
         // mass store
+        $request->merge([
+            'id' => Str::uuid()->toString(),
+        ]);
         $orderItem = OrderItem::create($request->all());
 
         if ($orderItem) {

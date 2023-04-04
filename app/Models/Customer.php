@@ -10,6 +10,6 @@ class Customer extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $fillable = ['name', 'phone', 'address'];
+    protected $fillable = ['id', 'name', 'phone', 'address'];
     public $incrementing = false;
 }

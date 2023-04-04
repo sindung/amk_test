@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ClassRoom;
 use App\Models\Customer;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Str;
 
 class OrderController extends Controller
 {
@@ -19,7 +19,7 @@ class OrderController extends Controller
             ->orWhere('subtotal', 'LIKE', '%' . $keyword . '%')
             ->orWhere('discount', 'LIKE', '%' . $keyword . '%')
             ->orWhere('total', 'LIKE', '%' . $keyword . '%')
-            ->orderBy('id', 'desc')
+            ->latest()
             ->paginate(3);
         return view('order', ['orderList' => $order]);
     }
@@ -49,6 +49,9 @@ class OrderController extends Controller
         ]);
 
         // mass store
+        $request->merge([
+            'id' => Str::uuid()->toString(),
+        ]);
         $order = Order::create($request->all());
 
         if ($order) {
