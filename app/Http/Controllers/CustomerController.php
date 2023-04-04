@@ -16,7 +16,7 @@ class CustomerController extends Controller
         $customer = Customer::where('name', 'LIKE', '%' . $keyword . '%')
             ->orWhere('address', 'LIKE', '%' . $keyword . '%')
             ->orWhere('phone', 'LIKE', '%' . $keyword . '%')
-            ->orderBy('id', 'desc')
+            // ->orderBy('id', 'desc')
             ->paginate(3);
         return view('customer', ['customerList' => $customer]);
     }
@@ -103,7 +103,7 @@ class CustomerController extends Controller
     public function restore($id)
     {
         $restore = Customer::withTrashed()
-            ->where('id', $id)
+            ->where('uuid', $id)
             ->restore();
 
         if ($restore) {

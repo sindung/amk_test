@@ -14,9 +14,11 @@ return new class extends Migration
     public function up()
     {
         Schema::create('student_extracurricular', function (Blueprint $table) {
-            $table->unsignedBigInteger('student_id');
+            // $table->unsignedBigInteger('student_id');
+            $table->uuid('student_id')->nullable(false);
             $table->foreign('student_id')->references('id')->on('students')->onDelete('restrict');
-            $table->unsignedBigInteger('extracurricular_id');
+            // $table->unsignedBigInteger('extracurricular_id');
+            $table->uuid('extracurricular_id')->nullable(false);
             $table->foreign('extracurricular_id')->references('id')->on('extracurriculars')->onDelete('restrict');
         });
     }

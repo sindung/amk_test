@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 03, 2023 at 03:18 AM
+-- Generation Time: Apr 04, 2023 at 08:35 AM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.0.25
 
@@ -28,9 +28,9 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `class` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` char(36) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `teacher_id` bigint(20) UNSIGNED DEFAULT NULL,
+  `teacher_id` char(36) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -40,11 +40,11 @@ CREATE TABLE `class` (
 --
 
 INSERT INTO `class` (`id`, `name`, `teacher_id`, `created_at`, `updated_at`) VALUES
-(1, '1A', 5, '2023-04-01 17:24:38', '2023-04-01 17:24:38'),
-(2, '1B', 1, '2023-04-01 17:24:38', '2023-04-01 17:24:38'),
-(3, '1C', 3, '2023-04-01 17:24:38', '2023-04-01 17:24:38'),
-(4, '1D', 4, '2023-04-01 17:24:38', '2023-04-01 17:24:38'),
-(5, 'test 2', NULL, '2023-04-02 06:25:34', '2023-04-02 06:26:29');
+('102e7d20-0a91-4429-815e-673ba0d2414f', '1C', 'e1f6a4f0-8b18-4172-8f61-806cc857e6c4', '2023-04-03 23:34:05', '2023-04-03 23:34:05'),
+('1a778006-e695-4d8b-9446-db2cf276cc8e', '1A', '4b71503f-0ea4-473b-b380-78ea80cf0077', '2023-04-03 23:34:05', '2023-04-03 23:34:05'),
+('260be3f9-796a-4376-81b9-29b5c4b088f9', '1B', '89ed61ae-4032-4e3e-8170-1adf65d5bdea', '2023-04-03 23:34:05', '2023-04-03 23:34:05'),
+('2f941745-4a80-4e59-a11c-f540ab348ceb', '1E', '11c61955-853c-4f4f-a75d-5512561b7f99', '2023-04-03 23:34:05', '2023-04-03 23:34:05'),
+('5f069ed1-a35a-42d4-a357-3978cad6be3b', '1D', 'baf2e1c2-c5d8-4d5f-9280-7d08c5f6ffba', '2023-04-03 23:34:05', '2023-04-03 23:34:05');
 
 -- --------------------------------------------------------
 
@@ -53,7 +53,7 @@ INSERT INTO `class` (`id`, `name`, `teacher_id`, `created_at`, `updated_at`) VAL
 --
 
 CREATE TABLE `customers` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` char(36) NOT NULL,
   `name` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
   `phone` varchar(255) NOT NULL,
@@ -67,12 +67,11 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`id`, `name`, `address`, `phone`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Mrs. Leonora Aufderhar', '74205 Wiza Tunnel Apt. 555\nSchummview, KY 37853-6723', '+1-541-634-9326', '2023-04-01 17:24:40', '2023-04-01 17:24:40', NULL),
-(2, 'Deangelo Ondricka', '77724 Keeling Trail\nStehrfurt, KS 42623', '1-251-768-5923', '2023-04-01 17:24:40', '2023-04-01 17:24:40', NULL),
-(3, 'Sallie Simonis', '4556 D\'Amore Pike\nAndreannefurt, IL 53116', '+1-912-664-3808', '2023-04-01 17:24:40', '2023-04-01 17:24:40', NULL),
-(4, 'Prof. Yoshiko Huel', '2360 Nettie Green\nLake Hallie, WV 19994-0287', '+1-412-351-3477', '2023-04-01 17:24:40', '2023-04-01 17:24:40', NULL),
-(5, 'Luz Fisher', '17052 Lucy Spring\nLillianbury, NH 12071', '(925) 498-8458', '2023-04-01 17:24:40', '2023-04-01 17:24:40', NULL),
-(6, 'test', 'test', '100', '2023-04-02 07:44:45', '2023-04-02 17:44:27', NULL);
+('0d9e5c7e-d9ac-4912-a824-e3fe5330cdce', 'Mr. Vidal Keeling MD', '21214 Cathy Rapid Suite 220\nMurrayberg, OR 40970-3687', '430.801.3236', '2023-04-03 23:34:06', '2023-04-03 23:34:06', NULL),
+('5a68b759-b2ac-4302-94af-50e0e0cff7e5', 'Leif Kemmer DVM', '8755 Williamson Meadow\nNew Francesca, NJ 26561-0053', '520.574.2596', '2023-04-03 23:34:06', '2023-04-03 23:34:06', NULL),
+('6a0594fb-70da-4182-a0c2-6c09c37f1316', 'Kathryn Wehner', '5146 Hickle Harbors Suite 318\nNorth Dewittbury, ID 49754', '630-325-2964', '2023-04-03 23:34:06', '2023-04-03 23:34:06', NULL),
+('703a4942-0ba3-4880-a849-0b639abfd8d0', 'Henderson Moore', '813 Kathleen Route Apt. 988\nAlexanneton, IN 81183', '+1-832-212-1128', '2023-04-03 23:34:06', '2023-04-03 23:34:06', NULL),
+('e0feeb6b-f908-4a31-9b40-388f54a69e5b', 'Rachelle Rosenbaum', '49705 Mayer Trace\nLake Omariton, NY 57325', '641-416-6627', '2023-04-03 23:34:06', '2023-04-03 23:34:06', NULL);
 
 -- --------------------------------------------------------
 
@@ -81,24 +80,11 @@ INSERT INTO `customers` (`id`, `name`, `address`, `phone`, `created_at`, `update
 --
 
 CREATE TABLE `extracurriculars` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` char(36) NOT NULL,
   `name` varchar(100) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `extracurriculars`
---
-
-INSERT INTO `extracurriculars` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Basket', '2023-04-01 17:24:39', '2023-04-01 17:24:39'),
-(2, 'Voley', '2023-04-01 17:24:39', '2023-04-01 17:24:39'),
-(3, 'Football', '2023-04-01 17:24:39', '2023-04-01 17:24:39'),
-(4, 'PMI', '2023-04-01 17:24:39', '2023-04-01 17:24:39'),
-(5, 'Pramuka', '2023-04-01 17:24:39', '2023-04-01 17:24:39'),
-(6, 'test', '2023-04-02 07:17:36', '2023-04-02 07:17:36'),
-(7, 'test', '2023-04-02 08:37:57', '2023-04-02 08:37:57');
 
 -- --------------------------------------------------------
 
@@ -107,7 +93,7 @@ INSERT INTO `extracurriculars` (`id`, `name`, `created_at`, `updated_at`) VALUES
 --
 
 CREATE TABLE `items` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` char(36) NOT NULL,
   `name` varchar(255) NOT NULL,
   `price` decimal(8,2) NOT NULL,
   `description` varchar(255) NOT NULL,
@@ -115,18 +101,6 @@ CREATE TABLE `items` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `items`
---
-
-INSERT INTO `items` (`id`, `name`, `price`, `description`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'possimus', '13584.00', 'Laborum veniam quidem fugit nostrum. Delectus ipsum dicta sit pariatur nisi vero. Adipisci dolor incidunt aliquam consequatur expedita dolor libero et. Cumque et provident aut placeat iusto officia.', '2023-04-01 17:24:40', '2023-04-01 17:24:40', NULL),
-(2, 'hic', '3440.00', 'Minima autem enim aut aperiam. Numquam fugit culpa ab tenetur ipsa quis. Earum dolor eos dolorum nesciunt est officiis culpa. Aut dicta aspernatur maxime id reprehenderit voluptas.', '2023-04-01 17:24:40', '2023-04-01 17:24:40', NULL),
-(3, 'ut', '76908.00', 'Ut non voluptatum repudiandae ipsum nam. Et modi temporibus dolores ipsa ab in. Omnis vel minima quia reprehenderit cumque. Illo facilis dolores amet rerum sequi.', '2023-04-01 17:24:40', '2023-04-01 17:24:40', NULL),
-(4, 'laudantium', '60281.00', 'Id voluptate ut eaque cumque molestias laboriosam ipsum. Quia et sit sed voluptas eum iste. Et minima facere officiis consequatur aut sed nihil.', '2023-04-01 17:24:40', '2023-04-01 17:24:40', NULL),
-(5, 'aut', '4546.00', 'Voluptas vel aut sunt eos eligendi suscipit. Molestiae unde sit sint sint quia. Dolor aut suscipit at explicabo odio dolor ipsa. Minus illum explicabo nihil voluptatibus quia odio in repellendus.', '2023-04-01 17:24:40', '2023-04-01 17:24:40', NULL),
-(6, 'test 2', '22.00', 'test 2', '2023-04-02 07:33:11', '2023-04-02 17:48:12', '2023-04-02 17:48:12');
 
 -- --------------------------------------------------------
 
@@ -167,10 +141,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (20, '2023_04_01_134525_create_student_extracurricular_table', 1),
 (21, '2023_04_01_141837_create_teachers_table', 1),
 (22, '2023_04_01_143406_add_teacher_id_column_to_class_table', 1),
-(23, '2023_04_02_230512_add_soft_delete_column_to_customers_table', 2),
-(24, '2023_04_02_231116_add_soft_delete_column_to_items_table', 3),
-(25, '2023_04_02_231241_add_soft_delete_column_to_orders_table', 4),
-(26, '2023_04_02_231345_add_soft_delete_column_to_order_items_table', 4);
+(23, '2023_04_02_230512_add_soft_delete_column_to_customers_table', 1),
+(24, '2023_04_02_231116_add_soft_delete_column_to_items_table', 1),
+(25, '2023_04_02_231241_add_soft_delete_column_to_orders_table', 1),
+(26, '2023_04_02_231345_add_soft_delete_column_to_order_items_table', 1);
 
 -- --------------------------------------------------------
 
@@ -179,10 +153,10 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 --
 
 CREATE TABLE `orders` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` char(36) NOT NULL,
   `code` varchar(255) NOT NULL,
   `date` date NOT NULL,
-  `customer_id` bigint(20) UNSIGNED NOT NULL,
+  `customer_id` char(36) NOT NULL,
   `address` varchar(255) NOT NULL,
   `subtotal` decimal(8,2) NOT NULL,
   `discount` decimal(8,2) NOT NULL,
@@ -192,18 +166,6 @@ CREATE TABLE `orders` (
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`id`, `code`, `date`, `customer_id`, `address`, `subtotal`, `discount`, `total`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, '0101001', '2023-04-02', 1, 'test', '4.00', '2.00', '2.00', '2023-04-01 17:24:40', '2023-04-01 17:24:40', NULL),
-(2, '0101002', '2023-04-02', 2, 'test', '4.00', '2.00', '2.00', '2023-04-01 17:24:40', '2023-04-01 17:24:40', NULL),
-(3, '0101003', '2023-04-02', 4, 'test', '4.00', '2.00', '2.00', '2023-04-01 17:24:40', '2023-04-01 17:24:40', NULL),
-(4, '0101004', '2023-04-02', 3, 'test', '4.00', '2.00', '2.00', '2023-04-01 17:24:40', '2023-04-01 17:24:40', NULL),
-(5, 'test 2', '2023-04-02', 5, 'test 2', '5.00', '6.00', '7.00', '2023-04-02 07:58:37', '2023-04-02 09:16:21', NULL),
-(7, 'test', '2023-04-03', 6, 'test', '6.00', '7.00', '8.00', '2023-04-02 15:54:03', '2023-04-02 17:44:08', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -211,9 +173,9 @@ INSERT INTO `orders` (`id`, `code`, `date`, `customer_id`, `address`, `subtotal`
 --
 
 CREATE TABLE `order_items` (
-  `id` bigint(20) UNSIGNED NOT NULL,
-  `order_id` bigint(20) UNSIGNED NOT NULL,
-  `item_id` bigint(20) UNSIGNED NOT NULL,
+  `id` char(36) NOT NULL,
+  `order_id` char(36) NOT NULL,
+  `item_id` char(36) NOT NULL,
   `qty` int(11) NOT NULL,
   `price` decimal(8,2) NOT NULL,
   `discount` decimal(8,2) NOT NULL,
@@ -223,17 +185,6 @@ CREATE TABLE `order_items` (
   `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `order_items`
---
-
-INSERT INTO `order_items` (`id`, `order_id`, `item_id`, `qty`, `price`, `discount`, `total`, `note`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 5, 4, '5.00', '2.00', '18.00', 'notes sample', '2023-04-01 17:24:40', '2023-04-01 17:24:40', NULL),
-(2, 2, 4, 4, '5.00', '2.00', '18.00', 'notes sample', '2023-04-01 17:24:40', '2023-04-01 17:24:40', NULL),
-(3, 3, 3, 4, '5.00', '2.00', '18.00', 'notes sample', '2023-04-01 17:24:40', '2023-04-01 17:24:40', NULL),
-(4, 3, 1, 4, '5.00', '2.00', '18.00', 'notes sample', '2023-04-01 17:24:40', '2023-04-01 17:24:40', NULL),
-(5, 5, 6, 5, '6.00', '7.00', '8.00', 'test note 2', '2023-04-02 08:15:19', '2023-04-02 17:27:04', NULL);
 
 -- --------------------------------------------------------
 
@@ -273,7 +224,7 @@ CREATE TABLE `personal_access_tokens` (
 --
 
 CREATE TABLE `roles` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` char(36) NOT NULL,
   `name` varchar(50) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -284,11 +235,11 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', '2023-04-01 17:24:41', '2023-04-01 17:24:41'),
-(2, 'Teacher', '2023-04-01 17:24:41', '2023-04-01 17:24:41'),
-(3, 'Student', '2023-04-01 17:24:41', '2023-04-01 17:24:41'),
-(4, 'Superadmin', '2023-04-01 17:24:41', '2023-04-01 17:24:41'),
-(5, 'Staff', '2023-04-01 17:24:41', '2023-04-01 17:24:41');
+('11436bb4-7c9a-4fae-b8e5-b39c07f3f972', 'Student', '2023-04-03 23:34:06', '2023-04-03 23:34:06'),
+('690176ab-ae8f-4813-bc92-4b0a92a5d5d9', 'Admin', '2023-04-03 23:34:06', '2023-04-03 23:34:06'),
+('7aab8e73-af62-4959-aa09-e1bcfeefcded', 'Teacher', '2023-04-03 23:34:06', '2023-04-03 23:34:06'),
+('83917a34-fa93-4693-a526-e4532f1d5a00', 'Staff', '2023-04-03 23:34:06', '2023-04-03 23:34:06'),
+('afb22cbe-96f1-47d1-8f6c-554cefab1eba', 'Superadmin', '2023-04-03 23:34:06', '2023-04-03 23:34:06');
 
 -- --------------------------------------------------------
 
@@ -297,30 +248,14 @@ INSERT INTO `roles` (`id`, `name`, `created_at`, `updated_at`) VALUES
 --
 
 CREATE TABLE `students` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` char(36) NOT NULL,
   `name` varchar(100) NOT NULL,
   `gender` varchar(1) DEFAULT NULL,
   `nis` varchar(10) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
-  `class_id` bigint(20) UNSIGNED NOT NULL
+  `class_id` char(36) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-
---
--- Dumping data for table `students`
---
-
-INSERT INTO `students` (`id`, `name`, `gender`, `nis`, `created_at`, `updated_at`, `class_id`) VALUES
-(1, '1A', 'P', '8134512', '2023-04-01 17:24:39', '2023-04-02 06:19:50', 1),
-(2, 'hic', 'P', '9560959', '2023-04-01 17:24:39', '2023-04-02 08:58:54', 3),
-(3, 'Prof. Jamil Beier IV', 'L', '3761046', '2023-04-01 17:24:39', '2023-04-01 17:24:39', 1),
-(4, 'Kyleigh Koelpin', 'L', '7232412', '2023-04-01 17:24:39', '2023-04-01 17:24:39', 1),
-(5, 'Dr. Bettie Sipes', 'P', '8461638', '2023-04-01 17:24:39', '2023-04-01 17:24:39', 2),
-(6, 'test', 'L', '36345234', '2023-04-01 22:04:20', '2023-04-02 09:03:44', 3),
-(8, 'test 3', 'L', '678457', '2023-04-01 22:17:29', '2023-04-01 22:17:29', 3),
-(9, 'test 4', 'L', '78457', '2023-04-01 23:12:03', '2023-04-01 23:12:03', 3),
-(10, 'test 5', 'P', '234246', '2023-04-01 23:13:16', '2023-04-01 23:13:16', 2),
-(13, 'test', 'L', 'test', '2023-04-02 08:39:20', '2023-04-02 08:39:20', 1);
 
 -- --------------------------------------------------------
 
@@ -329,8 +264,8 @@ INSERT INTO `students` (`id`, `name`, `gender`, `nis`, `created_at`, `updated_at
 --
 
 CREATE TABLE `student_extracurricular` (
-  `student_id` bigint(20) UNSIGNED NOT NULL,
-  `extracurricular_id` bigint(20) UNSIGNED NOT NULL
+  `student_id` char(36) NOT NULL,
+  `extracurricular_id` char(36) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- --------------------------------------------------------
@@ -340,7 +275,7 @@ CREATE TABLE `student_extracurricular` (
 --
 
 CREATE TABLE `teachers` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` char(36) NOT NULL,
   `name` varchar(100) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -351,13 +286,11 @@ CREATE TABLE `teachers` (
 --
 
 INSERT INTO `teachers` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Bambang', '2023-04-01 17:24:39', '2023-04-01 17:24:39'),
-(2, 'Tono', '2023-04-01 17:24:39', '2023-04-01 17:24:39'),
-(3, 'Mulyono', '2023-04-01 17:24:39', '2023-04-01 17:24:39'),
-(4, 'Siti', '2023-04-01 17:24:40', '2023-04-01 17:24:40'),
-(5, 'Ani', '2023-04-01 17:24:40', '2023-04-01 17:24:40'),
-(6, 'test', '2023-04-02 07:15:46', '2023-04-02 07:15:46'),
-(7, 'test', '2023-04-02 08:38:34', '2023-04-02 08:38:34');
+('11c61955-853c-4f4f-a75d-5512561b7f99', 'Bambang', '2023-04-03 23:34:05', '2023-04-03 23:34:05'),
+('4b71503f-0ea4-473b-b380-78ea80cf0077', 'Tono', '2023-04-03 23:34:05', '2023-04-03 23:34:05'),
+('89ed61ae-4032-4e3e-8170-1adf65d5bdea', 'Mulyono', '2023-04-03 23:34:05', '2023-04-03 23:34:05'),
+('baf2e1c2-c5d8-4d5f-9280-7d08c5f6ffba', 'Siti', '2023-04-03 23:34:05', '2023-04-03 23:34:05'),
+('e1f6a4f0-8b18-4172-8f61-806cc857e6c4', 'Ani', '2023-04-03 23:34:05', '2023-04-03 23:34:05');
 
 -- --------------------------------------------------------
 
@@ -366,10 +299,10 @@ INSERT INTO `teachers` (`id`, `name`, `created_at`, `updated_at`) VALUES
 --
 
 CREATE TABLE `users` (
-  `id` bigint(20) UNSIGNED NOT NULL,
+  `id` char(36) NOT NULL,
   `name` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `role_id` bigint(20) UNSIGNED NOT NULL,
+  `role_id` char(36) DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(255) NOT NULL,
   `remember_token` varchar(100) DEFAULT NULL,
@@ -382,11 +315,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `role_id`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Admin', 'admin@mail.com', 1, NULL, '$2y$10$59hNSRlq2fENT/8EjASNJuVLxRXWd5WCeDui1rkJyCG3Viq7zcc5m', NULL, '2023-04-01 17:24:41', '2023-04-01 17:24:41'),
-(2, 'Superadmin', 'superadmin@mail.com', 4, NULL, '$2y$10$IBkg.EZ.lbiryilBlnhrpOIYC/z7KZBWxxHkfqBxFEwNb/z6OYBF.', NULL, '2023-04-01 17:24:42', '2023-04-01 17:24:42'),
-(3, 'Staff', 'staff@mail.com', 5, NULL, '$2y$10$ffeKnQMqps.9YVKX9nkTgOzF6Fbfg3DLZ.pfDgOxQ1AH2sXLR8dA2', NULL, '2023-04-01 17:24:42', '2023-04-01 17:24:42'),
-(4, 'Teacher', 'teacher@mail.com', 2, NULL, '$2y$10$AL3AZX/s1xjsXSAz2VS6QelzoXUYXCYhtMDcx1JGDUad3yURc9DqS', NULL, '2023-04-01 17:24:42', '2023-04-01 17:24:42'),
-(5, 'Student', 'student@mail.com', 3, NULL, '$2y$10$iw7gcgBVdDekBxLvCH6qFOUpTS9.I7jQHkSApJESWz.bmuMwIUH8i', NULL, '2023-04-01 17:24:42', '2023-04-01 17:24:42');
+('7a809e64-c050-4b2f-a185-9a29db124c23', 'Staff', 'staff@mail.com', '83917a34-fa93-4693-a526-e4532f1d5a00', NULL, '$2y$10$yD.NqpLph3dRGl0vSRW5..THihkaw49O7mWsmEBBnMCAzvDh.eX/6', NULL, '2023-04-03 23:34:06', '2023-04-03 23:34:06'),
+('c8d554b9-5940-4d99-85a8-ab8791144bfb', 'Student', 'student@mail.com', '11436bb4-7c9a-4fae-b8e5-b39c07f3f972', NULL, '$2y$10$T7ivqfot1tcTd/eOgQ4Y5u0dpZUHn1JaL36KCOBMDn6.4.iHRKWc6', NULL, '2023-04-03 23:34:07', '2023-04-03 23:34:07'),
+('d50b6e63-9fa4-46c5-b7a1-044f6d382d68', 'Superadmin', 'superadmin@mail.com', 'afb22cbe-96f1-47d1-8f6c-554cefab1eba', NULL, '$2y$10$0WzAlNXbSvb64QkRZ6NjUuwGrOZyKvhn3XUfPHAYWAeAIyRP/q2ta', NULL, '2023-04-03 23:34:06', '2023-04-03 23:34:06'),
+('e358ee88-2d3f-4620-82a5-9b31cf490025', 'Teacher', 'teacher@mail.com', '7aab8e73-af62-4959-aa09-e1bcfeefcded', NULL, '$2y$10$b0dzBwuNUoqQ5wOTihNkrOhrN7ZjeXpGkRTCz7./HtMERA1fFHjZ.', NULL, '2023-04-03 23:34:07', '2023-04-03 23:34:07'),
+('e4f18a9a-f8fc-4a08-8ee2-6af912c66c2b', 'Admin', 'admin@mail.com', '690176ab-ae8f-4813-bc92-4b0a92a5d5d9', NULL, '$2y$10$Yr6FVZCZi4gSZfdJnb2q9.QQUvB9sssACeLivtOkh7QV4gpoRwuC2', NULL, '2023-04-03 23:34:06', '2023-04-03 23:34:06');
 
 --
 -- Indexes for dumped tables
@@ -492,76 +425,16 @@ ALTER TABLE `users`
 --
 
 --
--- AUTO_INCREMENT for table `class`
---
-ALTER TABLE `class`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `customers`
---
-ALTER TABLE `customers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `extracurriculars`
---
-ALTER TABLE `extracurriculars`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `items`
---
-ALTER TABLE `items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- AUTO_INCREMENT for table `orders`
---
-ALTER TABLE `orders`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `order_items`
---
-ALTER TABLE `order_items`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
 -- AUTO_INCREMENT for table `personal_access_tokens`
 --
 ALTER TABLE `personal_access_tokens`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `roles`
---
-ALTER TABLE `roles`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
-
---
--- AUTO_INCREMENT for table `students`
---
-ALTER TABLE `students`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT for table `teachers`
---
-ALTER TABLE `teachers`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->unsignedBigInteger('customer_id')->after('date');
+            $table->uuid('customer_id')->nullable(false)->after('date');
             $table->foreign('customer_id')->references('id')->on('customers')->onDelete('restrict');
         });
     }

@@ -7,6 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Schema;
+use Illuminate\Support\Str;
 
 class OrderSeeder extends Seeder
 {
@@ -26,6 +27,7 @@ class OrderSeeder extends Seeder
         ];
         foreach ($data as $key => $value) {
             Order::insert([
+                'id' => Str::uuid()->toString(),
                 'code' => $value['code'],
                 'date' => Carbon::now(),
                 'customer_id' => $value['customer_id'],

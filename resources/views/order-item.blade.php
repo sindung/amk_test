@@ -10,7 +10,9 @@
 @section('content')
     <div class="mb-4">
         <a href="/order-item-add" class="btn btn-primary">Add data</a>
-        <a href="/order-item-deleted" class="btn btn-outline-secondary">Show deleted data</a>
+        @if (Auth::user()->role_id == 1)
+            <a href="/order-item-deleted" class="btn btn-outline-secondary">Show deleted data</a>
+        @endif
     </div>
 
     @if (Session::has('status'))

@@ -14,7 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::table('students', function (Blueprint $table) {
-            $table->unsignedBigInteger('class_id')->required();
+            // $table->unsignedBigInteger('class_id')->required();
+            $table->uuid('class_id')->nullable(false);
             $table->foreign('class_id')->references('id')->on('class')->onDelete('restrict');
         });
     }

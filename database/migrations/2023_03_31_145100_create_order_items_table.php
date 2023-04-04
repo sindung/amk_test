@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('order_items', function (Blueprint $table) {
-            $table->id();
+            $table->uuid('id')->primary();
             $table->integer('qty');
             $table->decimal('price', $precision = 8, $scale = 2);
             $table->decimal('discount', $precision = 8, $scale = 2);
