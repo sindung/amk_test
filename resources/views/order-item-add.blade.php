@@ -24,7 +24,7 @@
             <div class="col-6">
                 <label for="order_id" class="form-label">Order Code</label>
                 <select id="order_id" name="order_id" class="form-select" autofocus required>
-                    <option selected>Choose...</option>
+                    <option value="" selected>Choose...</option>
                     @foreach ($orderList as $item)
                         <option value="{{ $item->id }}">{{ $item->code }}</option>
                     @endforeach
@@ -38,13 +38,14 @@
                                 <th>Item Name</th>
                                 <th>Qty</th>
                                 <th>Price</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
+                        <tbody id="items">
+                            <tr class="item">
                                 <td>
                                     <label for="item_id-0" class="form-label">Item Name</label>
-                                    <select id="item_id-0" name="item_id[]" class="form-select" autofocus required>
+                                    <select id="item_id-0" name="item_ids[]" class="form-select" autofocus required>
                                         <option selected>Choose...</option>
                                         @foreach ($itemList as $item)
                                             <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -53,41 +54,24 @@
                                 </td>
                                 <td>
                                     <label for="qty-0" class="form-label">Qty</label>
-                                    <input type="number" class="form-control" id="qty-0" name="qty[]" maxlength="11"
+                                    <input type="number" class="form-control" id="qty-0" name="qtys[]" maxlength="11"
                                         autofocus required>
                                 </td>
                                 <td>
                                     <label for="price-0" class="form-label">Price</label>
-                                    <input type="number" class="form-control" id="price-0" name="price[]" maxlength="8"
-                                        autofocus required>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <label for="item_id-1" class="form-label">Item Name</label>
-                                    <select id="item_id-1" name="item_id[]" class="form-select" autofocus required>
-                                        <option selected>Choose...</option>
-                                        @foreach ($itemList as $item)
-                                            <option value="{{ $item->id }}">{{ $item->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </td>
-                                <td>
-                                    <label for="qty-1" class="form-label">Qty</label>
-                                    <input type="number" class="form-control" id="qty-1" name="qty[]" maxlength="11"
+                                    <input type="number" class="form-control" id="price-0" name="prices[]" maxlength="8"
                                         autofocus required>
                                 </td>
                                 <td>
-                                    <label for="price-1" class="form-label">Price</label>
-                                    <input type="number" class="form-control" id="price-1" name="price[]" maxlength="8"
-                                        autofocus required>
+
                                 </td>
                             </tr>
                         </tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="3">
-                                    <button type="button" class="btn btn-primary" onclick="">Add Item</button>
+                                <td colspan="5">
+                                    <button type="button" class="btn btn-primary" onclick="" id="add-item">Add
+                                        Item</button>
                                 </td>
                             </tr>
                             <tr>
@@ -97,6 +81,7 @@
                                     <input type="number" class="form-control" id="discount" name="discount" maxlength="8"
                                         autofocus required>
                                 </td>
+                                <td></td>
                             </tr>
                             <tr>
                                 <td colspan="2"></td>
@@ -105,36 +90,12 @@
                                     <input type="number" class="form-control" id="total" name="total" maxlength="8"
                                         autofocus required>
                                 </td>
+                                <td></td>
                             </tr>
                         </tfoot>
                     </table>
                 </div>
             </div>
-            {{-- <div class="col-6">
-                <label for="item_id" class="form-label">Item Name</label>
-                <select id="item_id" name="item_id" class="form-select" autofocus required>
-                    <option selected>Choose...</option>
-                    @foreach ($itemList as $item)
-                        <option value="{{ $item->id }}">{{ $item->name }}</option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="col-md-6">
-                <label for="qty" class="form-label">Qty</label>
-                <input type="number" class="form-control" id="qty" name="qty" maxlength="11" autofocus required>
-            </div>
-            <div class="col-6">
-                <label for="price" class="form-label">Price</label>
-                <input type="number" class="form-control" id="price" name="price" maxlength="8" autofocus required>
-            </div> --}}
-            {{-- <div class="col-6">
-                <label for="discount" class="form-label">Discount</label>
-                <input type="number" class="form-control" id="discount" name="discount" maxlength="8" autofocus required>
-            </div>
-            <div class="col-6">
-                <label for="total" class="form-label">Total</label>
-                <input type="number" class="form-control" id="total" name="total" maxlength="8" autofocus required>
-            </div> --}}
             <div class="col-6">
                 <label for="note" class="form-label">Note</label>
                 {{-- <input type="text" class="form-control" id="note" name="note" maxlength="8" autofocus required> --}}
@@ -146,4 +107,50 @@
             </div>
         </form>
     </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const addItemsButton = document.getElementById("add-item");
+            const itemsContainer = document.getElementById("items");
+            let index = 1;
+
+            addItemsButton.addEventListener("click", function() {
+                const item = document.createElement("tr");
+                item.classList.add("item");
+                item.innerHTML = `
+                    <td>
+                        <label for="item_id-${index}" class="form-label">Item Name</label>
+                        <select id="item_id-${index}" name="item_ids[]" class="form-select" autofocus required>
+                            <option selected>Choose...</option>
+                            @foreach ($itemList as $item)
+                                <option value="{{ $item->id }}">{{ $item->name }}</option>
+                            @endforeach
+                        </select>
+                    </td>
+                    <td>
+                        <label for="qty-${index}" class="form-label">Qty</label>
+                        <input type="number" class="form-control" id="qty-${index}" name="qtys[]" maxlength="11"
+                            autofocus required>
+                    </td>
+                    <td>
+                        <label for="price-${index}" class="form-label">Price</label>
+                        <input type="number" class="form-control" id="price-${index}" name="prices[]" maxlength="8"
+                            autofocus required>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-sm btn-danger remove-item" title="Remove"><i class="bi bi-trash3"></i></button>
+                    </td>
+                `;
+                itemsContainer.appendChild(item);
+                index++;
+            });
+
+            itemsContainer.addEventListener("click", function(event) {
+                if (event.target.parentNode.classList.contains("remove-item")) {
+                    event.target.parentNode.parentNode.parentNode.remove();
+                }
+            });
+        });
+    </script>
+
 @endsection

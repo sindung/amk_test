@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Item;
 use App\Models\Order;
 use App\Models\OrderItem;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Str;
@@ -43,21 +44,48 @@ class OrderItemController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request);
+        // dd($request->item_id);
         $request->validate([
             'order_id' => 'required',
-            'item_id' => 'required',
-            'qty' => 'max:11|required',
-            'price' => 'max:8|required',
+            // 'item_id' => 'required|array|min:1',
+            // 'qty' => 'max:11|required|array|min:1',
+            // 'price' => 'max:8|required|array|min:1',
+            'item_ids.*' => 'required|string',
+            'qtys.*' => 'max:11|required',
+            'prices.*' => 'max:8|required',
             'discount' => 'max:8|required',
             'total' => 'max:8|required',
             'note' => 'max:250|required',
         ]);
 
+        $qtys = $request->qtys;
+        $prices = $request->prices;
+
+        foreach ($request->item_ids as $key => $item_id) {
+            if (!empty($item_id) && !empty($qtys[$key]) && !empty($prices[$key])) {
+                $orderItem = new OrderItem;
+                $orderItem->order_id = $request->order_id;
+                $orderItem->{'item_id'} = $item_id;
+                $orderItem->{'qty'} = $qtys[$key];
+                $orderItem->{'price'} = $prices[$key];
+                $orderItem->id = Str::uuid()->toString();
+                $orderItem->discount = $request->discount;
+                $orderItem->total = $request->total;
+                $orderItem->note = $request->note;
+                $orderItem->created_at = Carbon::now();
+                $orderItem->updated_at = Carbon::now();
+                $orderItem->save();
+            }
+        }
+
+        // dd($orderItem);
+
         // mass store
-        $request->merge([
-            'id' => Str::uuid()->toString(),
-        ]);
-        $orderItem = OrderItem::create($request->all());
+        // $request->merge([
+        //     'id' => Str::uuid()->toString(),
+        // ]);
+        // $orderItem = OrderItem::create($request->all());
 
         if ($orderItem) {
             Session::flash('status', 'success');
